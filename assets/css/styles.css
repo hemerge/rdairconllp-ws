@@ -108,6 +108,20 @@ a{text-decoration:none;color:inherit;transition:var(--transition)}
 }
 .card:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 14px 32px rgba(0,0,0,.12)}
 
+/* --- SERVICES SECTION ENHANCEMENTS --- */
+#services .grid { gap: 2rem; }
+#services .card {
+  background:#fff;
+  border-radius:10px;
+  padding:1.5rem;
+  box-shadow:0 4px 15px rgba(0,0,0,.06);
+  transition:transform .2s ease, box-shadow .2s ease;
+  display:flex;flex-direction:column;height:100%;
+}
+#services .card:hover { transform:translateY(-6px); box-shadow:0 8px 25px rgba(0,0,0,.12); }
+#services .card h3 { margin-bottom:.75rem; font-size:1.15rem; color:#004c66; }
+#services .card p { color:#444; font-size:.95rem; line-height:1.5; flex-grow:1; }
+
 .thumb{
   display:flex;
   align-items:center;
@@ -153,6 +167,15 @@ input:focus,select:focus,textarea:focus{
 textarea{min-height:120px;resize:vertical}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media (max-width:640px){.two{grid-template-columns:1fr}}
+
+/* Contact Section map */
+#map {
+  height: 300px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--line);
+  margin-top: 12px;
+}
 
 .site-footer{border-top:1px solid var(--line);padding:24px 0;background:#fafafa;animation: fadeIn 1.2s ease}
 .footer-grid{display:grid;gap:8px}

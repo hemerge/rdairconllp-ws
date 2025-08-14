@@ -31,7 +31,6 @@ if (yr) yr.textContent = new Date().getFullYear();
     dotsWrap.children[idx].classList.add('active');
   }
 
-  // dots
   slides.forEach((_, i) => {
     const b = document.createElement('button');
     b.setAttribute('aria-label', 'Go to slide ' + (i+1));
@@ -55,17 +54,16 @@ if (yr) yr.textContent = new Date().getFullYear();
   }
   autoplay();
 
-  // pause on hover
   carousel.addEventListener('mouseenter', ()=>clearInterval(timer));
   carousel.addEventListener('mouseleave', autoplay);
 })();
 
-/* Contact details placeholders */
+/* Contact details placeholders (filled where provided) */
 const CONTACT = {
-  phone: '', // e.g., +91 98xxxxxxx
-  email: '', // e.g., hello@rdaircon.in
-  map:   '', // Google Maps URL
-  address: '' // Full address
+  phone: '+919076776974',
+  email: '', // add if available
+  map:   'https://www.google.com/maps?q=19.019537,73.041440',
+  address: 'Shop No. 2, Chitrakut Apt, Plot No. Y-3, Shahbaz Village, Sector 19, CBD Belapur, Navi Mumbai, Maharashtra 400614'
 };
 (function(){
   const phoneLink = document.getElementById('phoneLink');
@@ -73,7 +71,7 @@ const CONTACT = {
   const maplink = document.getElementById('maplink');
   const addr = document.getElementById('addr');
   if (CONTACT.phone && phoneLink){
-    phoneLink.textContent = CONTACT.phone;
+    phoneLink.textContent = '+91 9076776974';
     phoneLink.href = 'tel:' + CONTACT.phone.replace(/\s+/g,'');
   }
   if (CONTACT.email && emailLink){
@@ -95,12 +93,12 @@ const CONTACT = {
 
   form.addEventListener('submit', function(e){
     const action = (form.getAttribute('action') || '').trim();
-    // If 'yourid' not replaced, fallback to mailto so it's functional without setup
     const needsFallback = !action || action.includes('yourid');
     if (needsFallback){
       e.preventDefault();
       const data = new FormData(form);
-      const to = (document.getElementById('emailLink')?.getAttribute('href') || 'mailto:').replace('mailto:','');
+      const toHref = document.getElementById('emailLink')?.getAttribute('href') || 'mailto:';
+      const to = toHref.replace('mailto:','');
       const subject = encodeURIComponent('New inquiry — RD Aircon LLP');
       const body = encodeURIComponent(
         'Name: ' + (data.get('name')||'') + '\n' +
@@ -110,8 +108,36 @@ const CONTACT = {
         'Message: ' + (data.get('message')||'')
       );
       window.location.href = 'mailto:' + to + '?subject=' + subject + '&body=' + body;
-    } else {
-      // Let the native POST go through to Formspree (works on GitHub Pages)
     }
   });
+})();
+
+/* Leaflet map with mobile-friendly behavior */
+(function(){
+  const mapDiv = document.getElementById('map');
+  if (!mapDiv || typeof L === 'undefined') return;
+  const isMobile = window.innerWidth < 768;
+
+  const map = L.map('map', {
+    center: [19.019537, 73.041440],
+    zoom: 16,
+    dragging: !isMobile,
+    tap: !isMobile,
+    scrollWheelZoom: !isMobile,
+    doubleClickZoom: !isMobile
+  });
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+  }).addTo(map);
+
+  L.marker([19.019537, 73.041440]).addTo(map)
+    .bindPopup(
+      `<b>RD Aircon</b><br>
+      Shop No. 2, Chitrakut Apt, Plot No. Y-3,<br>
+      Shahbaz Village, Sector 19, CBD Belapur,<br>
+      Navi Mumbai, Maharashtra 400614<br>
+      📞 <a href='tel:+919076776974'>+91 9076776974</a>`
+    )
+    .openPopup();
 })();

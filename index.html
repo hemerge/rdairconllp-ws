@@ -8,6 +8,8 @@
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
   <link rel="preload" href="assets/img/logo.png" as="image" />
   <link rel="stylesheet" href="assets/css/styles.css" />
+  <!-- Leaflet CSS for map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <script defer src="assets/js/main.js"></script>
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json">
@@ -20,15 +22,15 @@
     "description": "Air conditioning sales, installation, service and AMC.",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "",
-      "addressLocality": "",
-      "addressRegion": "",
-      "postalCode": "",
+      "streetAddress": "Shop No. 2, Chitrakut Apt, Plot No. Y-3, Shahbaz Village, Sector 19, CBD Belapur",
+      "addressLocality": "Navi Mumbai",
+      "addressRegion": "Maharashtra",
+      "postalCode": "400614",
       "addressCountry": "IN"
     },
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "",
+      "telephone": "+919076776974",
       "contactType": "customer service",
       "areaServed": "IN"
     }
@@ -214,14 +216,15 @@
           <h3>Reach Us</h3>
           <p>
             <strong>RD Aircon LLP</strong><br />
-            <span id="addr">[Add full address here]</span><br />
+            <span id="addr">Shop No. 2, Chitrakut Apt, Plot No. Y-3, Shahbaz Village, Sector 19, CBD Belapur, Navi Mumbai, Maharashtra 400614</span><br />
             <a href="#" id="maplink" rel="noopener">View on Map</a>
           </p>
           <p>
-            <strong>Phone:</strong> <a id="phoneLink" href="tel:">[Add phone]</a><br />
+            <strong>Phone:</strong> <a id="phoneLink" href="tel:+919076776974">+91 9076776974</a><br />
             <strong>Email:</strong> <a id="emailLink" href="mailto:">[Add email]</a>
           </p>
           <p><strong>Hours:</strong> Mon–Sat 9:30 AM – 7:00 PM</p>
+          <div id="map" aria-label="Map location of RD Aircon LLP"></div>
         </div>
       </div>
     </section>
@@ -237,5 +240,8 @@
       <p class="small">© <span id="year"></span> RD Aircon LLP. All rights reserved.</p>
     </div>
   </footer>
+
+  <!-- Leaflet JS for map -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </body>
 </html>
