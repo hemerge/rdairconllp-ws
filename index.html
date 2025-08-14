@@ -241,7 +241,28 @@
     </div>
   </footer>
 
-  <!-- Leaflet JS for map -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Initialize map
+      var map = L.map('map').setView([19.0196, 73.0264], 16); // Approx coords for RD Aircon
+
+      // Add OpenStreetMap tiles
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
+
+      // Add marker
+      L.marker([19.0196, 73.0264])
+        .addTo(map)
+        .bindPopup("<b>RD Aircon LLP</b><br>Shop No. 2, Chitrakut Apt, Plot No. Y-3, Shahbaz Village,<br>Sector 19, CBD Belapur, Navi Mumbai, Maharashtra 400614")
+        .openPopup();
+
+      // Also make "View on Map" link work
+      document.getElementById('maplink').href =
+        "https://www.openstreetmap.org/?mlat=19.0196&mlon=73.0264#map=16/19.0196/73.0264";
+    });
+  </script>
+  
 </body>
 </html>
