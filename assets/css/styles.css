@@ -170,6 +170,7 @@ textarea{min-height:120px;resize:vertical}
 
 /* Contact Section map */
 #map {
+  width: 100%;
   height: 300px;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
